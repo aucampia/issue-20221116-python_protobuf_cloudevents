@@ -1,6 +1,6 @@
 {
   "template": "/home/iwana/sw/d/github.com/aucampia/cookiecutter-python",
-  "commit": "b55afbc35c367355beedd42100fea2d6e0e740fc",
+  "commit": "c3e37052a3a07786ce9c0fbbe6b29414a501312d",
   "checkout": null,
   "context": {
     "cookiecutter": {
