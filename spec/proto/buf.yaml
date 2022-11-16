@@ -1,0 +1,15 @@
+# https://docs.buf.build/configuration/v1/buf-yaml
+version: v1
+name: ""
+deps:
+  - buf.build/googleapis/googleapis
+build:
+  excludes: []
+lint:
+  use:
+    - DEFAULT
+  ignore:
+    - io/cloudevents/v1/cloudevents.proto
+breaking:
+  use:
+    - FILE

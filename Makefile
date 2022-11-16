@@ -84,7 +84,6 @@ python-validate-static:
 	$(poetry) run flake8 $(py_source)
 	$(poetry) export --without-hashes --dev --format requirements.txt | $(poetry) run safety check --full-report --stdin
 
-
 .PHONY: python-validate-fix
 validate-fix: python-validate-fix
 python-validate-fix:
@@ -94,12 +93,61 @@ python-validate-fix:
 
 .PHONY: python-test
 test: python-test
+pytest_args=--cov-report term --cov-report xml
 python-test:
-	$(poetry) run pytest --cov-report term --cov-report xml ./tests
+	$(poetry) run pytest $(pytest_args)
 
 .PHONY: python-validate
 validate: python-validate
 python-validate: python-validate-static python-test
+
+########################################################################
+# buf targets
+########################################################################
+
+protbuf_dir=spec/proto
+buf=poetry run buf
+buf_format_args=--exclude-path spec/proto/io/cloudevents/v1/cloudevents.proto
+
+.PHONY: buf-validate
+validate: buf-validate
+buf-validate: ## buf validation
+	$(buf) lint
+	$(buf) format --diff $(buf_format_args)
+
+.PHONY: buf-validate-fix
+validate-fix: buf-validate-fix
+buf-validate-fix: ## fix auto-fixable buf validation errors
+	$(buf) format --write $(buf_format_args)
+
+.PHONY: buf-generate
+generate: buf-generate
+buf-generate: ## generate buf outputs
+	\rm -rv generated/proto/ || :
+	$(buf) generate --include-imports
+
+$(generated_dir)/main.dsc: | $(generated_dir)/
+	$(buf) build --as-file-descriptor-set -o $(@) -vv --debug
+
+.PHONY: buf-export
+generate: buf-export
+buf-export: | $(localstatedir)/buf/ ## export proto files
+	$(buf) export -o $(localstatedir)/buf/exported
+
+.PHONY: buf-mod-update
+buf-mod-update: # Update buf modules
+	$(buf) mod update $(protbuf_dir)
+
+########################################################################
+# other
+########################################################################
+
+
+fetch: spec/proto/io/cloudevents/v1/cloudevents.proto
+
+spec/proto/io/cloudevents/v1/cloudevents.proto:
+	mkdir -vp $(dir $(@))
+	curl https://github.com/cloudevents/spec/raw/3da5643ebceb39637406a7e30903dbac81cf92d2/cloudevents/formats/cloudevents.proto -o $(@)
 
 ########################################################################
 # utility targets

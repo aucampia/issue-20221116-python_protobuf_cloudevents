@@ -17,7 +17,7 @@ RUN \
 
 FROM docker.io/mikefarah/yq:4 as yq
 
-# ... 
+# ...
 FROM docker.io/library/python:3.7 AS python
 
 
@@ -35,6 +35,9 @@ RUN \
         git \
         rsync \
         libarchive-tools \
+        protobuf-compiler \
+        jq \
+        yq \
         && \
     rm -vr /var/lib/apt/lists/* && \
     true

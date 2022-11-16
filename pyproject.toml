@@ -19,7 +19,8 @@ packages = [
 python = "^3.7"
 pydantic = ">=1"
 PyYAML = ">=6"
-# 
+protobuf = "^4.21.9"
+#
 
 [tool.poetry.dev-dependencies]
 black = ">=22"
@@ -39,6 +40,8 @@ safety = ">=1"
 types-click = ">=7"
 types-PyYAML = ">=6"
 typing-extensions = ">=4"
+mypy-protobuf = "^3.4.0"
+types-protobuf = "^3.20.4.5"
 
 [tool.coverage.report]
 # https://coverage.readthedocs.io/en/coverage-5.0/config.html
@@ -70,10 +73,10 @@ warn_unused_configs = true
 explicit_package_bases = true
 namespace_packages = true
 
-# 
+#
 
 [build-system]
-# 
-requires = ["setuptools","poetry-core>=1.0.0"]
-# 
+#
+requires = ["setuptools","poetry-core>=1.2.0"]
+#
 build-backend = "poetry.core.masonry.api"
