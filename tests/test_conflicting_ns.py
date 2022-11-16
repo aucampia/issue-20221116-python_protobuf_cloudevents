@@ -1,10 +1,11 @@
 import logging
 import os
 import sys
+import argparse
 from pathlib import Path
+from pkgutil import extend_path
 
 MODULE_PATH = Path(__file__)
-
 
 if os.environ.get("HACK_SYS_PATH", "") != "":
     logging.info("sys.path = %s", sys.path)
@@ -21,6 +22,8 @@ def test_something() -> None:
 
 def test_conflict_a() -> None:
     logging.info("entry: ...")
+
     import argparse.sub
 
     assert argparse.sub.whoami() == "argparse.sub"
+
