@@ -8,7 +8,7 @@ MODULE_PATH = Path(__file__)
 
 if os.environ.get("HACK_SYS_PATH", "") != "":
     logging.info("sys.path = %s", sys.path)
-    sys.path.insert(0, f"{MODULE_PATH.parent / 'src'}")
+    sys.path.insert(0, f"{MODULE_PATH.parent.parent / 'src'}")
     logging.info("sys.path = %s", sys.path)
 
 
