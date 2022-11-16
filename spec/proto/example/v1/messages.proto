@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package example.v1;
+
+import "io/cloudevents/v1/cloudevents.proto";
+
+message Something {
+  string field_a = 1;
+  io.cloudevents.v1.CloudEvent field_b = 2;
+}

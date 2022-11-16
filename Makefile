@@ -145,7 +145,7 @@ fetch: spec/proto/io/cloudevents/v1/cloudevents.proto
 
 spec/proto/io/cloudevents/v1/cloudevents.proto:
 	mkdir -vp $(dir $(@))
-	curl https://github.com/cloudevents/spec/raw/3da5643ebceb39637406a7e30903dbac81cf92d2/cloudevents/formats/cloudevents.proto -o $(@)
+	curl -L https://github.com/cloudevents/spec/raw/3da5643ebceb39637406a7e30903dbac81cf92d2/cloudevents/formats/cloudevents.proto -o $(@)
 
 ########################################################################
 # utility targets
