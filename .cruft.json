@@ -1,0 +1,24 @@
+{
+  "template": "/home/iwana/sw/d/github.com/aucampia/cookiecutter-python",
+  "commit": "b9da4ce67951bb604775193dcd4947fffa441672",
+  "checkout": null,
+  "context": {
+    "cookiecutter": {
+      "project_name": "example.aucampia.nsconflict",
+      "python_package_fqname": "example.aucampia.nsconflict",
+      "project_url": "https://example.com/project",
+      "project_dirname": "nsconflict",
+      "project_short_description": "example.aucampia.nsconflict",
+      "cli_name": "example.aucampia.nsconflict-cli",
+      "sdpx_license_identifier": "UNLICENSED",
+      "version": "0.0.0",
+      "python_version": "3.7",
+      "init_git": "n",
+      "variant": "minimal",
+      "build_tool": "gnu-make",
+      "use_poetry_dynamic_versioning": "n",
+      "_template": "/home/iwana/sw/d/github.com/aucampia/cookiecutter-python"
+    }
+  },
+  "directory": null
+}
