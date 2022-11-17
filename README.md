@@ -8,23 +8,24 @@ HACK_SYS_PATH=1 poetry run pytest --log-cli-level=DEBUG
 
 ```console
 $ HACK_SYS_PATH=1 poetry run pytest --log-cli-level=DEBUG
-============================================================================ test session starts ============================================================================
+========================================================================================================= test session starts =========================================================================================================
 platform linux -- Python 3.10.8, pytest-7.2.0, pluggy-1.0.0
 rootdir: /home/iwana/sw/d/github.com/aucampia/issue-20221116-python_protobuf_cloudevents, configfile: pyproject.toml, testpaths: tests
 plugins: cov-4.0.0
 collecting ...
----------------------------------------------------------------------------- live log collection ----------------------------------------------------------------------------
-2022-11-16T16:15:16 3667091 139663342167872 020:INFO     root         test_conflicting_ns:10:<module> sys.path = ['/home/iwana/sw/d/github.com/aucampia/issue-20221116-python_protobuf_cloudevents/tests', '/home/iwana/sw/d/github.com/aucampia/issue-20221116-python_protobuf_cloudevents/.venv/bin', '/usr/lib64/python310.zip', '/usr/lib64/python3.10', '/usr/lib64/python3.10/lib-dynload', '/home/iwana/sw/d/github.com/aucampia/issue-20221116-python_protobuf_cloudevents/.venv/lib64/python3.10/site-packages', '/home/iwana/sw/d/github.com/aucampia/issue-20221116-python_protobuf_cloudevents/.venv/lib/python3.10/site-packages']
-2022-11-16T16:15:16 3667091 139663342167872 020:INFO     root         test_conflicting_ns:13:<module> sys.path = ['/home/iwana/sw/d/github.com/aucampia/issue-20221116-python_protobuf_cloudevents/generated/proto', '/home/iwana/sw/d/github.com/aucampia/issue-20221116-python_protobuf_cloudevents/src', '/home/iwana/sw/d/github.com/aucampia/issue-20221116-python_protobuf_cloudevents/tests', '/home/iwana/sw/d/github.com/aucampia/issue-20221116-python_protobuf_cloudevents/.venv/bin', '/usr/lib64/python310.zip', '/usr/lib64/python3.10', '/usr/lib64/python3.10/lib-dynload', '/home/iwana/sw/d/github.com/aucampia/issue-20221116-python_protobuf_cloudevents/.venv/lib64/python3.10/site-packages', '/home/iwana/sw/d/github.com/aucampia/issue-20221116-python_protobuf_cloudevents/.venv/lib/python3.10/site-packages']
-collected 4 items
+--------------------------------------------------------------------------------------------------------- live log collection ---------------------------------------------------------------------------------------------------------
+2022-11-17T10:11:58 3697856 140043171333952 020:INFO     root         test_conflicting_ns:10:<module> sys.path = ['/home/iwana/sw/d/github.com/aucampia/issue-20221116-python_protobuf_cloudevents/tests', '/home/iwana/sw/d/github.com/aucampia/issue-20221116-python_protobuf_cloudevents/.venv/bin', '/usr/lib64/python310.zip', '/usr/lib64/python3.10', '/usr/lib64/python3.10/lib-dynload', '/home/iwana/sw/d/github.com/aucampia/issue-20221116-python_protobuf_cloudevents/.venv/lib64/python3.10/site-packages', '/home/iwana/sw/d/github.com/aucampia/issue-20221116-python_protobuf_cloudevents/.venv/lib/python3.10/site-packages']
+2022-11-17T10:11:58 3697856 140043171333952 020:INFO     root         test_conflicting_ns:13:<module> sys.path = ['/home/iwana/sw/d/github.com/aucampia/issue-20221116-python_protobuf_cloudevents/generated/proto', '/home/iwana/sw/d/github.com/aucampia/issue-20221116-python_protobuf_cloudevents/src', '/home/iwana/sw/d/github.com/aucampia/issue-20221116-python_protobuf_cloudevents/tests', '/home/iwana/sw/d/github.com/aucampia/issue-20221116-python_protobuf_cloudevents/.venv/bin', '/usr/lib64/python310.zip', '/usr/lib64/python3.10', '/usr/lib64/python3.10/lib-dynload', '/home/iwana/sw/d/github.com/aucampia/issue-20221116-python_protobuf_cloudevents/.venv/lib64/python3.10/site-packages', '/home/iwana/sw/d/github.com/aucampia/issue-20221116-python_protobuf_cloudevents/.venv/lib/python3.10/site-packages']
+collected 5 items
 
-tests/test_conflicting_ns.py::test_something PASSED                                                                                                                   [ 25%]
-tests/test_conflicting_ns.py::test_conflict_a PASSED                                                                                                                  [ 50%]
-tests/test_conflicting_ns.py::test_mailbox FAILED                                                                                                                     [ 75%]
-tests/test_conflicting_ns.py::test_conflict_c FAILED                                                                                                                  [100%]
+tests/test_conflicting_ns.py::test_something PASSED                                                                                                                                                                             [ 20%]
+tests/test_conflicting_ns.py::test_conflict_a PASSED                                                                                                                                                                            [ 40%]
+tests/test_conflicting_ns.py::test_mailbox FAILED                                                                                                                                                                               [ 60%]
+tests/test_conflicting_ns.py::test_conflict_b FAILED                                                                                                                                                                            [ 80%]
+tests/test_conflicting_ns.py::test_pb_okay PASSED                                                                                                                                                                               [100%]
 
-================================================================================= FAILURES ==================================================================================
-_______________________________________________________________________________ test_mailbox ________________________________________________________________________________
+============================================================================================================== FAILURES ===============================================================================================================
+____________________________________________________________________________________________________________ test_mailbox _____________________________________________________________________________________________________________
 
     def test_mailbox() -> None:
         """
@@ -32,13 +33,13 @@ _______________________________________________________________________________ 
         """
         import mailbox
 
->       assert callable(mailbox.Mailbox)
+>       assert callable(mailbox.Mailbox)  # type: ignore
 E       AttributeError: module 'mailbox' has no attribute 'Mailbox'
 
 tests/test_conflicting_ns.py:37: AttributeError
-______________________________________________________________________________ test_conflict_c ______________________________________________________________________________
+___________________________________________________________________________________________________________ test_conflict_b ___________________________________________________________________________________________________________
 
-    def test_conflict_c() -> None:
+    def test_conflict_b() -> None:
         """
         this does not work because it generates modules inside io namespace
 
@@ -47,7 +48,7 @@ ______________________________________________________________________________ t
 >       import example.v1.messages_pb2
 
 tests/test_conflicting_ns.py:46:
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
     # -*- coding: utf-8 -*-
     # Generated by the protocol buffer compiler.  DO NOT EDIT!
@@ -78,10 +79,10 @@ src/mailbox/sub/__init__.py                       2      0   100%
 ---------------------------------------------------------------------------
 TOTAL                                             9      0   100%
 
-========================================================================== short test summary info ==========================================================================
+======================================================================================================= short test summary info =======================================================================================================
 FAILED tests/test_conflicting_ns.py::test_mailbox - AttributeError: module 'mailbox' has no attribute 'Mailbox'
-FAILED tests/test_conflicting_ns.py::test_conflict_c - ModuleNotFoundError: No module named 'io.cloudevents'; 'io' is not a package
-======================================================================== 2 failed, 2 passed in 0.07s ========================================================================
+FAILED tests/test_conflicting_ns.py::test_conflict_b - ModuleNotFoundError: No module named 'io.cloudevents'; 'io' is not a package
+===================================================================================================== 2 failed, 3 passed in 0.09s =====================================================================================================
 ```
 
 ## Using docker devtools
