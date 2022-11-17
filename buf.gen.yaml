@@ -15,3 +15,7 @@ plugins:
     out: generated/proto
   - name: mypy
     out: generated/proto
+  - name: python
+    out: generated/protorope
+  - name: mypy
+    out: generated/protorope

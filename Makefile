@@ -64,7 +64,7 @@ clean: clean-var/
 # python
 ########################################################################
 
-py_source=./src ./tests
+py_source=./src ./tests ./devscripts
 poetry=python -m poetry
 
 .PHONY: python-configure

@@ -42,6 +42,8 @@ types-PyYAML = ">=6"
 typing-extensions = ">=4"
 mypy-protobuf = "^3.4.0"
 types-protobuf = "^3.20.4.5"
+rope = "^1.4.0"
+
 
 [tool.coverage.report]
 # https://coverage.readthedocs.io/en/coverage-5.0/config.html
@@ -50,7 +52,7 @@ show_missing = true
 [tool.isort]
 # https://pycqa.github.io/isort/docs/configuration/config_files.html
 profile = "black"
-src_paths = ["src", "tests"]
+src_paths = ["src", "tests", "scripts"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
@@ -64,14 +66,18 @@ log_cli_date_format = "%Y-%m-%dT%H:%M:%S"
 
 [tool.mypy]
 # https://mypy.readthedocs.io/en/stable/config_file.html
-files = "src,tests"
-mypy_path = "src,generated/proto"
+files = "src,tests,devscripts"
+mypy_path = "src,generated/proto,devscripts"
 python_version = "3.7"
 strict = true
 warn_unreachable = true
 warn_unused_configs = true
 explicit_package_bases = true
 namespace_packages = true
+
+[[tool.mypy.overrides]]
+module = "rope.*"
+ignore_missing_imports = true
 
 #
 

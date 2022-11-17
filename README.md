@@ -1,8 +1,11 @@
 # ...
 
 ```bash
+# Only install dependencies as we want to hack the python path
 poetry install --no-root
+# Check that everything is valid
 make validate-fix validate-static
+# Run the tests with sys.path hax.
 HACK_SYS_PATH=1 poetry run pytest --log-cli-level=DEBUG
 ```
 
@@ -76,4 +79,11 @@ pipx run --spec=cruft cruft update
 make help
 make validate-fix validate
 HACK_SYS_PATH=1 make test pytest_args='--log-cli-level=DEBUG'
+```
+
+
+## ...
+
+```bash
+poetry run python devscripts/protoc_fixer.py --prefix _qnrgwqoo generated/protorope/
 ```
