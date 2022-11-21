@@ -18,7 +18,7 @@ packages = [
 
 
 [tool.poetry.dependencies]
-python = "^3.7"
+python = "~3.9"
 pydantic = ">=1"
 PyYAML = ">=6"
 protobuf = "^4.21.9"
@@ -47,6 +47,7 @@ mypy-protobuf = "^3.4.0"
 types-protobuf = "^3.20.4.5"
 rope = "^1.4.0"
 betterproto = {extras = ["compiler"], version = "^2.0.0b5", allow-prereleases = true}
+protoletariat = "^1.1.0"
 
 [tool.coverage.report]
 # https://coverage.readthedocs.io/en/coverage-5.0/config.html

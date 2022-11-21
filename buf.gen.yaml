@@ -30,3 +30,11 @@ plugins:
   - name: python_betterproto
     out: generated/betterproto/_bpbgen
     strategy: all
+  - name: python
+    out: generated/protoletariat
+  - name: grpclib_python
+    out: generated/protoletariat
+  - name: mypy
+    out: generated/protoletariat
+  - name: mypy_grpc
+    out: generated/protoletariat
