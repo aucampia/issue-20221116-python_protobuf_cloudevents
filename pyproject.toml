@@ -8,11 +8,13 @@ authors = []
 license = "UNLICENSED"
 readme = "README.md"
 packages = [
-    {include = "*", from = "src"},
+    {include = "example", from = "src"},
+    {include = "*", from = "generated/betterproto"},
+    # {include = "*", from = "generated/proto"},
 ]
 
-[tool.poetry.scripts]
-"example.aucampia.nsconflict-cli" = "example.aucampia.nsconflict.cli:main"
+# [tool.poetry.scripts]
+# "example.aucampia.nsconflict-cli" = "example.aucampia.nsconflict.cli:main"
 
 
 [tool.poetry.dependencies]
@@ -21,6 +23,7 @@ pydantic = ">=1"
 PyYAML = ">=6"
 protobuf = "^4.21.9"
 #
+betterproto = {version = "^2.0.0b5", allow-prereleases = true}
 
 [tool.poetry.dev-dependencies]
 black = ">=22"
@@ -43,7 +46,7 @@ typing-extensions = ">=4"
 mypy-protobuf = "^3.4.0"
 types-protobuf = "^3.20.4.5"
 rope = "^1.4.0"
-
+betterproto = {extras = ["compiler"], version = "^2.0.0b5", allow-prereleases = true}
 
 [tool.coverage.report]
 # https://coverage.readthedocs.io/en/coverage-5.0/config.html
@@ -67,7 +70,7 @@ log_cli_date_format = "%Y-%m-%dT%H:%M:%S"
 [tool.mypy]
 # https://mypy.readthedocs.io/en/stable/config_file.html
 files = "src,tests,devscripts"
-mypy_path = "src,generated/proto,devscripts"
+mypy_path = "src,generated/proto,generated/betterproto,devscripts"
 python_version = "3.7"
 strict = true
 warn_unreachable = true

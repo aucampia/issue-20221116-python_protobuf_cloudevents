@@ -13,9 +13,20 @@ managed:
 plugins:
   - name: python
     out: generated/proto
+  - name: grpclib_python
+    out: generated/proto
   - name: mypy
+    out: generated/proto
+  - name: mypy_grpc
     out: generated/proto
   - name: python
     out: generated/protorope
+  - name: grpclib_python
+    out: generated/protorope
   - name: mypy
     out: generated/protorope
+  - name: mypy_grpc
+    out: generated/protorope
+  - name: python_betterproto
+    out: generated/betterproto/_bpbgen
+    strategy: all

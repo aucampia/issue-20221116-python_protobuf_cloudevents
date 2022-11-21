@@ -5,6 +5,7 @@ isort:skip_file
 import builtins
 import google.protobuf.descriptor
 import google.protobuf.message
+import io.cloudevents.v1.cloudevents_pb2
 import sys
 
 if sys.version_info >= (3, 8):
@@ -20,20 +21,16 @@ class Something(google.protobuf.message.Message):
 
     FIELD_A_FIELD_NUMBER: builtins.int
     FIELD_B_FIELD_NUMBER: builtins.int
-    SOME_FIELD_FIELD_NUMBER: builtins.int
     field_a: builtins.str
-    field_b: builtins.int
-    SOME_FIELD: builtins.str
-    """  string someField = 4;
-      string some_field = 5;
-    """
+    @property
+    def field_b(self) -> io.cloudevents.v1.cloudevents_pb2.CloudEvent: ...
     def __init__(
         self,
         *,
         field_a: builtins.str = ...,
-        field_b: builtins.int = ...,
-        SOME_FIELD: builtins.str = ...,
+        field_b: io.cloudevents.v1.cloudevents_pb2.CloudEvent | None = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing_extensions.Literal["SOME_FIELD", b"SOME_FIELD", "field_a", b"field_a", "field_b", b"field_b"]) -> None: ...
+    def HasField(self, field_name: typing_extensions.Literal["field_b", b"field_b"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing_extensions.Literal["field_a", b"field_a", "field_b", b"field_b"]) -> None: ...
 
 global___Something = Something

@@ -121,8 +121,9 @@ buf-validate-fix: ## fix auto-fixable buf validation errors
 .PHONY: buf-generate
 generate: buf-generate
 buf-generate: ## generate buf outputs
-	\rm -rv generated/proto/ || :
+	\rm -rv generated/*proto*/ || :
 	$(buf) generate --include-imports
+	touch generated/betterproto/_bpbgen/py.typed
 
 $(generated_dir)/main.dsc: | $(generated_dir)/
 	$(buf) build --as-file-descriptor-set -o $(@) -vv --debug
