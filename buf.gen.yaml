@@ -31,10 +31,10 @@ plugins:
     out: generated/betterproto/_bpbgen
     strategy: all
   - name: python
-    out: generated/protoletariat
+    out: generated/protol/_plgen
   - name: grpclib_python
-    out: generated/protoletariat
+    out: generated/protol/_plgen
   - name: mypy
-    out: generated/protoletariat
+    out: generated/protol/_plgen
   - name: mypy_grpc
-    out: generated/protoletariat
+    out: generated/protol/_plgen

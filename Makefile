@@ -124,6 +124,8 @@ buf-generate: ## generate buf outputs
 	\rm -rv generated/*proto*/ || :
 	$(buf) generate --include-imports
 	touch generated/betterproto/_bpbgen/py.typed
+	poetry run protol --in-place --python-out generated/protol/_plgen --exclude-google-imports buf
+	touch generated/protol/_plgen/py.typed
 
 $(generated_dir)/main.dsc: | $(generated_dir)/
 	$(buf) build --as-file-descriptor-set -o $(@) -vv --debug

@@ -71,7 +71,7 @@ log_cli_date_format = "%Y-%m-%dT%H:%M:%S"
 [tool.mypy]
 # https://mypy.readthedocs.io/en/stable/config_file.html
 files = "src,tests,devscripts"
-mypy_path = "src,generated/proto,generated/betterproto,devscripts"
+mypy_path = "src,generated/proto,generated/betterproto,generated/protol,devscripts"
 python_version = "3.7"
 strict = true
 warn_unreachable = true

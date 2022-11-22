@@ -10,11 +10,15 @@ import betterproto
 
 MODULE_PATH = Path(__file__)
 
+
 if os.environ.get("HACK_SYS_PATH", "") != "":
+    # Doing this to have precice control over the module resolution path and
+    # avoid any extraneous logic
     logging.info("sys.path = %s", sys.path)
     sys.path.insert(0, f"{MODULE_PATH.parent.parent / 'src'}")
     sys.path.insert(0, f"{MODULE_PATH.parent.parent / 'generated' / 'proto'}")
     sys.path.insert(0, f"{MODULE_PATH.parent.parent / 'generated' / 'betterproto'}")
+    sys.path.insert(0, f"{MODULE_PATH.parent.parent / 'generated' / 'protol'}")
     logging.info("sys.path = %s", sys.path)
 
 
@@ -47,6 +51,7 @@ def test_pb_okay() -> None:
 def identity_case(value: str, strict: bool = True) -> str:
     return value
 
+
 def test_bpb_okay() -> None:
     import _bpbgen.example.v1
     import _bpbgen.example.v2
@@ -56,6 +61,30 @@ def test_bpb_okay() -> None:
         _bpbgen.example.v1.Something(),
         _bpbgen.example.v2.Something(),
         _bpbgen.io.cloudevents.v1.CloudEvent(),
+    ]
+
+    for msg in msgs:
+        json = msg.to_dict(betterproto.Casing.CAMEL, include_default_values=True)
+        logging.info("json = %s", json)
+
+    for msg in msgs:
+        json = msg.to_dict(betterproto.Casing.SNAKE, include_default_values=True)
+        logging.info("json = %s", json)
+
+    for msg in msgs:
+        json = msg.to_dict(identity_case, include_default_values=True)
+        logging.info("json = %s", json)
+
+
+def test_bpb_okay() -> None:
+    import _plgen.example.v1
+    import _plgen.example.v2
+    import _plgen.io.cloudevents.v1
+
+    msgs: List[betterproto.Message] = [
+        _plgen.example.v1.Something(),
+        _plgen.example.v2.Something(),
+        _plgen.io.cloudevents.v1.CloudEvent(),
     ]
 
     for msg in msgs:
