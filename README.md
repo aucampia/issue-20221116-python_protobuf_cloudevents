@@ -119,3 +119,7 @@ HACK_SYS_PATH=1 make test pytest_args='--log-cli-level=DEBUG'
 ```bash
 poetry run python devscripts/protoc_fixer.py --prefix _qnrgwqoo generated/protorope/
 ```
+
+## see also
+
+- https://github.com/cpcloud/protoletariat/issues/689
