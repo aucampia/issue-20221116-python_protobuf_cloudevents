@@ -6,6 +6,6 @@ message Something {
   string field_a = 1;
   int64 field_b = 2;
   string SOME_FIELD = 3;
-//   string someField = 4;
-//   string some_field = 5;
+  //   string someField = 4;
+  //   string some_field = 5;
 }

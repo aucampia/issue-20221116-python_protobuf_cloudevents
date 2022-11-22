@@ -13,9 +13,8 @@ import rope.base.resources as rresources
 import rope.contrib.generate as rgenerate
 from rope.base.project import Project
 from rope.refactor.move import MoveModule
-from rope.refactor.restructure import Restructure
-
 from rope.refactor.rename import Rename
+from rope.refactor.restructure import Restructure
 
 logger = logging.getLogger(__name__)
 
@@ -171,8 +170,9 @@ class Application:
             # logger.info("change = %s", change)
             # project.do(change)
 
-
-            Rename(project, )
+            Rename(
+                project,
+            )
 
             # logger.info("x = %s", python_module.absolute_name)
 

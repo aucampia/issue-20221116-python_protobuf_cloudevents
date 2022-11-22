@@ -10,6 +10,7 @@ readme = "README.md"
 packages = [
     {include = "example", from = "src"},
     {include = "*", from = "generated/betterproto"},
+    {include = "*", from = "generated/protol"},
     # {include = "*", from = "generated/proto"},
 ]
 
@@ -82,6 +83,10 @@ namespace_packages = true
 [[tool.mypy.overrides]]
 module = "rope.*"
 ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "_plgen.*"
+ignore_errors = true
 
 #
 
