@@ -84,9 +84,9 @@ namespace_packages = true
 module = "rope.*"
 ignore_missing_imports = true
 
-[[tool.mypy.overrides]]
-module = "_plgen.*"
-ignore_errors = true
+# [[tool.mypy.overrides]]
+# module = "_plgen.*"
+# ignore_errors = true
 
 #
 
